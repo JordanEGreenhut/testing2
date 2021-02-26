@@ -1,0 +1,15 @@
+pollutantmean<- function(directory, pollutant, id=1:332) {
+  myVector<-vector(mode = "numeric")
+  files<- list.files(directory, full.names=TRUE)
+  if(pollutant == "sulfate") {
+    for(i in seq_along(id)) {
+      myDataframe <- read.csv(files[i])
+      myVector <- append(myVector, myDataframe$sulfate)}
+    }
+  if(pollutant == "nitrate") {
+    for(i in seq_along(id)) {
+      myDataframe <- read.csv(files[i])
+      myDataframe <- append(myVector, myDataframe$nitrate)
+  }}
+  mean(myVector, na.rm=TRUE)
+}
