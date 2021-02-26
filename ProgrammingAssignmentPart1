@@ -16,7 +16,7 @@ pollutantmean<- function(directory, pollutant, id=1:332) {
       myDataframe <- read.csv(files[i])
       myDataframe <- append(myVector, myDataframe$nitrate)
       }}
-  
+  #ignore NA values in mean()
   mean(myVector, na.rm=TRUE)
 
 }
