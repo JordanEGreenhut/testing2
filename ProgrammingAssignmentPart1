@@ -1,5 +1,6 @@
 pollutantmean<- function(directory, pollutant, id=1:332) {
   myVector<-vector(mode = "numeric")
+  #create list for specdata file with 332 csvs
   files<- list.files(directory, full.names=TRUE)
   if(pollutant == "sulfate") {
     for(i in seq_along(id)) {
