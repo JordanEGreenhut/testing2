@@ -1,22 +1,2 @@
-pollutantmean<- function(directory, pollutant, id=1:332) {
-  #empty vector for nitrate or sulfate
-  myVector<-vector(mode = "numeric")
-  #create list for specdata file with 332 csvs
-  files<- list.files(directory, full.names=TRUE)
-  
-  if(pollutant == "sulfate") {
-    #follow along the list with the id sequence
-    for(i in seq_along(id)) {
-    myDataframe <- read.csv(files[i])
-    myVector <- append(myVector, myDataframe$sulfate)}
-    }
-  
-  if(pollutant == "nitrate") {
-    for(i in seq_along(id)) {
-      myDataframe <- read.csv(files[i])
-      myVector <- append(myVector, myDataframe$nitrate)
-      }}
-  #ignore NA values in mean()
-  mean(myVector, na.rm=TRUE)
 
 }
