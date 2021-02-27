@@ -1,0 +1,34 @@
+#this function makes the matrix
+makeMatrix <- function(x=matrix()) {
+  #must be null for $ operators... i think
+  m <- NULL
+  set <- function(y) {
+    #SUPERassignment supercedes environment 
+    x <<- y
+    #must be null for $ operators... i think
+    m <<- NULL
+  }
+  get <- function() {x}
+  setInv <- function(inv) {(m <<- inv)} 
+  getInv <- function() {m}
+  #list syntax e.g. x=1, y=2,...
+  list(set = set, get = get,
+       setInv = setInv,
+       getInv = getInv)
+}
+cacheInverse <- function(x, ...) {
+  #superassings inv to m
+  m <- x$getInv()
+  if(!is.null(m)) {
+    message("getting cached data")
+    return(m)
+  }
+  #gets m
+  data <- x$get()
+  m <- solve(data, ...)
+  x$setInv(m)
+  #gets m for value
+  m
+}
+
+# test with p<-(makeMatrix(matrix(c(5, 1, 0,3,-1, 2,4, 0,-1), nrow=3, byrow=TRUE))) and cacheInverse(p)
